@@ -1,28 +1,33 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
+import React from "react";
+import { SafeAreaView, StatusBar, StyleSheet, useColorScheme } from "react-native";
+import AddTodoButton from "./components/AddTodoButton";
+import TodoEditModal from "./components/TodoEditModal";
+import NotFound from "./pages/NotFound";
+import { routes } from "./pages/routes";
+import useAppStore from "./stores/useAppStore";
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
+    const isDarkMode = useColorScheme() === "dark";
+    const screenRoute = useAppStore((state) => state.screenRoute);
+    const Screen = routes[screenRoute as keyof typeof routes];
 
-  return (
-    <View style={styles.container}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <NewAppScreen templateFileName="App.tsx" />
-    </View>
-  );
+    return (
+        <>
+            <SafeAreaView style={styles.app}>
+                <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+                {Screen ? <Screen /> : <NotFound />}
+                <AddTodoButton />
+            </SafeAreaView>
+            <TodoEditModal />
+        </>
+    );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    app: {
+        flex: 1,
+        backgroundColor: "#f5f5f5",
+    },
 });
 
 export default App;
