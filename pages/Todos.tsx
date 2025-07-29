@@ -27,7 +27,7 @@ function Todos() {
                 <Text style={styles.header_title}>BuddyTodo</Text>
             </View>
             {todos.length > 0 ? (
-                <FlatList data={sortedTodos} renderItem={({ item }) => <TodoItem todo={item} />} keyExtractor={(item) => item.id || ""} style={styles.list} />
+                <FlatList data={sortedTodos} renderItem={({ item }) => <TodoItem todo={item} />} keyExtractor={(item) => item.id || ""} style={styles.list} showsVerticalScrollIndicator={false} />
             ) : (
                 <View style={styles.no_todo_container}>
                     <Text style={styles.no_todo_text}>No tasks? You're not lazy 😎</Text>
@@ -41,6 +41,7 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 16,
+        paddingBottom: 72,
     },
     header: {
         marginBottom: 16,
