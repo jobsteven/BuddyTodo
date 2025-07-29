@@ -1,4 +1,4 @@
-import { Alert, Modal, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
+import { Alert, KeyboardAvoidingView, Modal, Platform, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, TouchableWithoutFeedback, View } from "react-native";
 import useAppStore from "../stores/useAppStore";
 import { generateLocalId } from "../utils";
 
@@ -61,18 +61,26 @@ function TodoEditModal() {
     return (
         <Modal transparent animationType="slide" visible={openTodoEditModal} onRequestClose={handleCloseModal} onAccessibilityAction={handleCloseModal}>
             <TouchableWithoutFeedback onPress={handleTouchOutside}>
-                <View style={styles.container}>
-                    <TouchableWithoutFeedback onPress={(e) => e.stopPropagation()}>
-                        <SafeAreaView style={styles.safe_area_container}>
-                            <View style={styles.input_container}>
-                                <TextInput style={styles.title_input} value={editTodo?.title} placeholder="What's on your mind?" onChangeText={(text) => setEditTodo({ ...editTodo, title: text })} />
-                                <TouchableOpacity style={styles.save_btn} onPress={handleSave}>
-                                    <Text style={styles.save_btn_text}>Save</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </SafeAreaView>
-                    </TouchableWithoutFeedback>
-                </View>
+                <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === "ios" ? "padding" : "height"}>
+                    <View style={styles.container}>
+                        <TouchableWithoutFeedback onPress={(e) => e.stopPropagation()}>
+                            <SafeAreaView style={styles.safe_area_container}>
+                                <View style={styles.input_container}>
+                                    <TextInput
+                                        style={styles.title_input}
+                                        value={editTodo?.title}
+                                        autoFocus={true}
+                                        placeholder="What's on your mind?"
+                                        onChangeText={(text) => setEditTodo({ ...editTodo, title: text })}
+                                    />
+                                    <TouchableOpacity style={styles.save_btn} onPress={handleSave}>
+                                        <Text style={styles.save_btn_text}>Save</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </SafeAreaView>
+                        </TouchableWithoutFeedback>
+                    </View>
+                </KeyboardAvoidingView>
             </TouchableWithoutFeedback>
         </Modal>
     );
