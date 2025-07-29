@@ -59,7 +59,7 @@ function TodoEditModal() {
     };
 
     return (
-        <Modal transparent animationType="slide" presentationStyle="pageSheet" visible={openTodoEditModal} onRequestClose={handleCloseModal} onAccessibilityAction={handleCloseModal}>
+        <Modal transparent animationType="slide" visible={openTodoEditModal} onRequestClose={handleCloseModal} onAccessibilityAction={handleCloseModal}>
             <TouchableWithoutFeedback onPress={handleTouchOutside}>
                 <View style={styles.container}>
                     <TouchableWithoutFeedback onPress={(e) => e.stopPropagation()}>
