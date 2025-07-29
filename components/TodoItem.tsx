@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     actions: {
         flexDirection: "row",
         alignItems: "center",
-        justifyContent: "space-between",
+        justifyContent: "flex-end",
         gap: 16,
     },
     del_btn_text: {
