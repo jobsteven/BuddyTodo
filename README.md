@@ -110,13 +110,10 @@ const addTodoAuthorized = async (todo: Todo) => {
 - `pnpm start` - Start Metro bundler
 - `pnpm ios` - Run on iOS simulator
 - `pnpm android` - Run on Android emulator
-- `pnpm lint` - Run ESLint
-- `pnpm test` - Run Jest tests
 
 ### Code Style
 - TypeScript for type safety
-- ESLint for code quality
-- Prettier for code formatting
+- Biome for code formatting & code quality
 - Functional components with hooks
 
 ### Key Components
