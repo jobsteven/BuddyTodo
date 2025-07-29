@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { Alert, StyleSheet, Switch, Text, TouchableOpacity, View } from "react-native";
+import { Alert, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import useAppStore, { type Todo } from "../stores/useAppStore";
 
 function TodoItem({ todo }: { todo: Todo }) {
