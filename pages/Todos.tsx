@@ -1,5 +1,5 @@
 import { memo, useEffect, useRef } from "react";
-import { FlatList, StyleSheet, View } from "react-native";
+import { FlatList, StyleSheet, Text, View } from "react-native";
 import TodoItem from "../components/TodoItem";
 import useAppStore from "../stores/useAppStore";
 
@@ -23,15 +23,16 @@ function Todos() {
 
     return (
         <View style={styles.screen}>
-            <FlatList
-                ref={flatListRef}
-                style={styles.list}
-                data={sortedTodos}
-                renderItem={({ item }) => <TodoItem todo={item} />}
-                keyExtractor={(item) => item.id || ""}
-                showsVerticalScrollIndicator={false}
-                contentContainerStyle={styles.listContent}
-            />
+            <View style={styles.header}>
+                <Text style={styles.header_title}>BuddyTodo</Text>
+            </View>
+            {todos.length > 0 ? (
+                <FlatList data={sortedTodos} renderItem={({ item }) => <TodoItem todo={item} />} keyExtractor={(item) => item.id || ""} style={styles.list} />
+            ) : (
+                <View style={styles.no_todo_container}>
+                    <Text style={styles.no_todo_text}>No tasks? You're not lazy 😎</Text>
+                </View>
+            )}
         </View>
     );
 }
@@ -41,11 +42,26 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
     },
+    header: {
+        marginBottom: 16,
+    },
+    header_title: {
+        fontSize: 24,
+        fontWeight: "bold",
+    },
     list: {
         flex: 1,
     },
     listContent: {
         paddingBottom: 64,
+    },
+    no_todo_container: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+    },
+    no_todo_text: {
+        fontSize: 16,
     },
 });
 
