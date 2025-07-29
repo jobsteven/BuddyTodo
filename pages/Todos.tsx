@@ -17,7 +17,7 @@ function Todos() {
         if (sortedTodos.length > 0) {
             setTimeout(() => {
                 flatListRef.current?.scrollToOffset({ offset: 0, animated: true });
-            }, 100);
+            }, 250);
         }
     }, [sortedTodos.length]);
 
@@ -27,7 +27,14 @@ function Todos() {
                 <Text style={styles.header_title}>BuddyTodo</Text>
             </View>
             {todos.length > 0 ? (
-                <FlatList data={sortedTodos} renderItem={({ item }) => <TodoItem todo={item} />} keyExtractor={(item) => item.id || ""} style={styles.list} showsVerticalScrollIndicator={false} />
+                <FlatList
+                    ref={flatListRef}
+                    data={sortedTodos}
+                    renderItem={({ item }) => <TodoItem todo={item} />}
+                    keyExtractor={(item) => item.id || ""}
+                    style={styles.list}
+                    showsVerticalScrollIndicator={false}
+                />
             ) : (
                 <View style={styles.no_todo_container}>
                     <Text style={styles.no_todo_text}>No tasks? You're not lazy 😎</Text>

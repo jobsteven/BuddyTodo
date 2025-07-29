@@ -36,7 +36,7 @@ const useAppStore = create<useAppStore>((set) => ({
     setOpenTodoEditModal: (open: boolean) => set(() => ({ openTodoEditModal: open })),
 
     todos: [],
-    addTodo: (todo: Todo) => set((state) => ({ todos: [...state.todos, todo] })),
+    addTodo: (todo: Todo) => set((state) => ({ todos: [todo, ...state.todos] })),
     removeTodo: (id: string) => set((state) => ({ todos: state.todos.filter((todo) => todo.id !== id) })),
     updateTodo: (id: string, todo: Todo) => set((state) => ({ todos: state.todos.map((t) => (t.id === id ? todo : t)) })),
     toggleTodo: (id: string) => set((state) => ({ todos: state.todos.map((t) => (t.id === id ? { ...t, done: !t.done } : t)) })),
